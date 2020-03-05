@@ -16,13 +16,19 @@ public class MainDemoApp {
 		AccountDAO theAccountDAO = context.getBean("accountDAO", AccountDAO.class);
 		
 		// get membership bean from spring container
-		MembershipDAO theMembershipDAO = 
-				context.getBean("membershipDAO", MembershipDAO.class);
+		MembershipDAO theMembershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
 		
 		// call the business method
 		Account newAccount = new Account();
 		theAccountDAO.addAccount(newAccount, true);
 		theAccountDAO.doWork();
+		
+		// call the accountdao getter/setter methods
+		theAccountDAO.setName("foobar");
+		theAccountDAO.setServiceCode("silver");
+
+		String name = theAccountDAO.getName();
+		String code = theAccountDAO.getServiceCode();
 
 		// call the membership business method
 		theMembershipDAO.addSillyMembership();
