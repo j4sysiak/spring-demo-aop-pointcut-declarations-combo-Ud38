@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyDemoLoggingAspect {
 
+	// create pointcut for any method in ...dao package
 	@Pointcut("execution(* pl.jaceksysiak.aopdemo.dao.*.*(..))")
 	private void forDaoPackage() {}
 	
@@ -20,7 +21,7 @@ public class MyDemoLoggingAspect {
 	@Pointcut("execution(* pl.jaceksysiak.aopdemo.dao.*.set*(..))")
 	private void setter() {}
 	
-	// create pointcut: include package ... exclude getter/setter
+	// combo: create pointcut: include package ... exclude getter/setter
 	@Pointcut("forDaoPackage() && !(getter() || setter())")
 	private void forDaoPackageNoGetterSetter() {}
 	
